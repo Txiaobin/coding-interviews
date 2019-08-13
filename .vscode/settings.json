@@ -8,6 +8,7 @@
         "utility": "cpp",
         "stdexcept": "cpp",
         "algorithm": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "vector": "cpp"
     }
 }

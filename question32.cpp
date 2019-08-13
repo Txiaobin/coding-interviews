@@ -10,6 +10,7 @@ Xiaobin Tian;
  */
 
 #include<queue>
+#include<algorithm>
 using namespace::std;
 
  struct TreeNode {
@@ -42,12 +43,67 @@ public:
     }
 
 //题目二：
-	vector<int> PrintFromTopToBottom(TreeNode* root) {
-
+	vector<vector<int> > Print(TreeNode* root) {
+		vector<vector<int> > print;
+		if(!root)
+			return print;
+		queue<TreeNode*> myqueue;
+		int num = 1;
+		auto p = root;
+		myqueue.push(p);
+		while(!myqueue.empty()){
+			int newnum = 0;
+			vector<int> temp;
+			for(int i = 0; i < num; ++i){
+				p = myqueue.front();
+				myqueue.pop();
+				temp.push_back(p->val);
+				if(p->left){
+					myqueue.push(p->left);
+					++newnum;
+				}
+				if(p->right){
+					myqueue.push(p->right);
+					++newnum;
+				}
+			}
+			num = newnum;
+			print.push_back(temp);
+		}
+		return print;
     }
 
 //题目三：
 	vector<vector<int> > Print(TreeNode* pRoot) {
-        
+        vector<vector<int> > print;
+		if(!pRoot)
+			return print;
+		queue<TreeNode*> myqueue;
+		int num = 1, level = 1;
+		auto p = pRoot;
+		myqueue.push(p);
+		while(!myqueue.empty()){
+			int newnum = 0;
+			vector<int> temp;
+			for(int i = 0; i < num; ++i){
+				p = myqueue.front();
+				myqueue.pop();
+				temp.push_back(p->val);
+				if(p->left){
+					myqueue.push(p->left);
+					++newnum;
+				}
+				if(p->right){
+					myqueue.push(p->right);
+					++newnum;
+				}
+			}
+			if(level % 2 == 0)
+				reverse(temp.begin(), temp.end());
+			print.push_back(temp);
+			num = newnum;
+			++level;
+		}
+		return print;
     }
 };
