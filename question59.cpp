@@ -39,8 +39,10 @@ vector<int> maxWindows(vector<int> numbers, int size){
     maxNum.push_back(numbers[index.front()]);
     return maxNum;
 }
-
-//题目二
+/*
+******************************************************************
+题目二
+*/
 template<typename T> class QueueWithMax{
 private:
     struct datatype{
@@ -74,4 +76,4 @@ public:
             throw new exception("queue is empty");
         return maxnum.front().number;
     }
-}
+};
